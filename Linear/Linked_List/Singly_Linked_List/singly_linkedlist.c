@@ -12,6 +12,7 @@ typedef struct _node {
 } node;
 
 node* head = NULL;
+node* tail = NULL;
 
 node* createNode(int data);
 int insertNode(int data);
@@ -45,13 +46,13 @@ node* createNode(int data) {
 int insertNode(int data) {
     if(head == NULL) {
         head = createNode(data);
+	tail = head;
 	return SUCCESS;
     }
 
-    node* cur = head;
-    while(cur->next != NULL) cur = cur->next;
-
-    cur->next = createNode(data);
+    tail->next = createNode(data);
+    tail = tail->next;
+    
     return SUCCESS;
 }
 
